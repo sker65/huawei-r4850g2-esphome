@@ -28,3 +28,5 @@ The "BavarianSuperGay" adds another special trick: while the MCP2515 is running 
 I prefer to route everything via mqtt, so this project doesn't need to share an API key with home assistant. Instead add the address of your mqtt server to your secrets.yaml file.
 ![Secrets](/images/secrets.png)
 
+The home assistant auto discovery via mqtt creates immediate cards for your dashboards
+![ha](/images/ha.png)
