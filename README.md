@@ -7,10 +7,13 @@ There are lots of boards and modules available just search for "esp32 canbus".
 This project is inspired by 
   - https://github.com/craigpeacock/Huawei_R4850G2_CAN/
   - https://github.com/KlausLi/Esp-HuaweiR4850-Controller
+  - https://github.com/mb-software/esphome-huawei-r4850
 
 The first is in C and meant to run based on linux on a raspberry pi or similar.
 
 The second is more specialized for a charge control in combination with solar power. And more important: is it closed source and has a strange api.
+
+The 3rd is a mix of ESPHome with custom components in python and c++ and seems unneccesary complex.
 
 That's why I tried to do this with pure ESPHome and do all the automation part in home assistant.
 
