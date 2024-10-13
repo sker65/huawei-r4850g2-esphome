@@ -26,6 +26,13 @@ Basically this is the setup:
 
 The "BavarianSuperGay" adds another special trick: while the MCP2515 is running with 3v3 to keep it compatible to the ESP, the can bus transceiver is feed with 5v. Not sure if this is really necessary, but it works fine. To do this you need to modify the can bus module see https://youtu.be/2mAzP_35Ox8
 
+# Additional settings
+
+## online / offline
+In addition to the settings supported on the can bus there is a **online/offline** switch, that allows to also test the offline mode without disconnecting the can bus. When set to "offline" the controller stop sending data requests which make the huawei r4850 "go offline" after around 30 seconds. You will notice the yellow led at the front blinking and output voltage and current are change to the offline default.
+
+When giong back online the controller will automatically restore the latest "online" values for voltage and current.
+
 # Home assistant
 
 I prefer to route everything via mqtt, so this project doesn't need to share an API key with home assistant. Instead add the address of your mqtt server to your secrets.yaml file.
