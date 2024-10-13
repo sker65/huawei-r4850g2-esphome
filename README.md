@@ -9,11 +9,11 @@ This project is inspired by
   - https://github.com/KlausLi/Esp-HuaweiR4850-Controller
   - https://github.com/mb-software/esphome-huawei-r4850
 
-The first is in C and meant to run based on linux on a raspberry pi or similar.
+The first is in C and meant to run on linux on a raspberry pi or similar. Also I noticed that the factors for current are wrong.
 
 The second is more specialized for a charge control in combination with solar power. And more important: is it closed source and has a strange api.
 
-The 3rd is a mix of ESPHome with custom components in python and c++ and seems unneccesary complex.
+The 3rd is a mix of ESPHome with custom components in python and c++ and seems unneccesary complex. But in this implementation the factors for current seem to be correct.
 
 That's why I tried to do this with pure ESPHome and do all the automation part in home assistant.
 
