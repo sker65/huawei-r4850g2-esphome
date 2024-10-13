@@ -7,13 +7,18 @@ This project is inspired by
 
 The first is in C and meant to run based on linux on a raspberry pi or similar.
 
-The second is more specialized for a charge control in combination with solar power. And more important: is it close source and has a bit strange api.
+The second is more specialized for a charge control in combination with solar power. And more important: is it closed source and has a strange api.
 
-That why I tried to do this with pure ESPHome and do all the automation part in home assistant.
+That's why I tried to do this with pure ESPHome and do all the automation part in home assistant.
 
 # Wiring
 
 Wiring is exactly the same as in https://github.com/KlausLi/Esp-HuaweiR4850-Controller please lookup the wiring in this project.
+
+Basically this is the setup:
+![wiring](/images/wiring.png)
+
+The "BavarianSuperGay" adds another special trick: while the MCP2515 is running with 3v3 to keep it compatible to the ESP, the can bus transceiver is feed with 5v. Not sure if this is really necessary, but it works fine. To do this you need to modify the can bus module see https://youtu.be/2mAzP_35Ox8
 
 # Home assistant
 
