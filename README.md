@@ -1,6 +1,9 @@
 # huawei-r4850g2-esphome
 ESPHome project for huawei r4850g2 rectifier with can bus control.
 
+It uses a cheap D1 mini module (ESP8266) and a can bus module MCP2515. Alternatively you can also use a ESP32 and a can bus transceiver.
+There are lots of boards and modules available just search for "esp32 canbus".
+
 This project is inspired by 
   - https://github.com/craigpeacock/Huawei_R4850G2_CAN/
   - https://github.com/KlausLi/Esp-HuaweiR4850-Controller
