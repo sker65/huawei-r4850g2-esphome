@@ -1,5 +1,5 @@
 # huawei-r4850g2-esphome
-ESPHome project for huawei r4850g2 rectifier with can bus control.
+ESPHome project for huawei r4850g2 or r4850g1 rectifier with can bus control.
 
 It uses a cheap D1 mini module (ESP8266) and a can bus module MCP2515. Alternatively you can also use a ESP32 and a can bus transceiver.
 There are lots of boards and modules available just search for "esp32 canbus".
@@ -32,6 +32,10 @@ The "BavarianSuperGay" adds another special trick: while the MCP2515 is running 
 In addition to the settings supported on the can bus there is a **online/offline** switch, that allows to also test the offline mode without disconnecting the can bus. When set to "offline" the controller stop sending data requests which make the huawei r4850 "go offline" after around 30 seconds. You will notice the yellow led at the front blinking and output voltage and current are change to the offline default.
 
 When giong back online the controller will automatically restore the latest "online" values for voltage and current.
+
+## max_current placeholder
+
+You can set the max current of your rectifier at the beginning of the yaml file so it works for 50A type and for 75A types as well.
 
 # Home assistant
 

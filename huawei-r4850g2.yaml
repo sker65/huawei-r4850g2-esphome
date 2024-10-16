@@ -2,6 +2,10 @@ substitutions:
   friendly_name: Huawei R4850G2
   name: huawei-r4850g2
   mqtt_server: !secret mqtt_server
+# There are two models r4850r1 and r4850r2
+# the r1 has 4000W or 75 Amps max, the r2 has 3000W or 50
+# depending on the model you can configure max current here:
+  max_current: 50
 
 esphome:
   name: $name
@@ -216,12 +220,12 @@ number:
     device_class: current
     optimistic: true
     min_value: 0
-    max_value: 50
+    max_value: $max_current
     step: 0.1
     on_value:
       then:
         - lambda: |-
-            uint16_t y = x * 20;
+            uint16_t y = (float) x / ($max_current / 100.0) * 10.23;
             ESP_LOGD("SET VAL current limit:", "%f %i", x, y );
             std::vector< uint8_t > data3 { 1,3,0,0,0,0, (uint8_t)((y & 0xFF00) >> 8), (uint8_t)(y&0xFF) };
             id(can1)->send_data(0x108180FE, 1, data3);       
@@ -233,12 +237,12 @@ number:
     restore_value: true
     optimistic: true
     min_value: 0
-    max_value: 50
+    max_value: $max_current
     step: 0.1
     on_value:
       then:
         - lambda: |-
-            uint16_t y = x * 20;
+            uint16_t y = (float) x / ($max_current / 100.0) * 10.23;
             ESP_LOGD("SET VAL default current limit:", "%f %i", x, y );
             std::vector< uint8_t > data4 { 1,4,0,0,0,0, (uint8_t)((y & 0xFF00) >> 8), (uint8_t)(y&0xFF) };
             id(can1)->send_data(0x108180FE, 1, data4);       
@@ -258,7 +262,7 @@ script:
       amp: float
     then:
       - lambda: |-
-          uint16_t y = amp * 20;
+          uint16_t y = (float) amp / ($max_current / 100.0) * 10.23;
           ESP_LOGD("SET VAL current limit:", "%f %i", amp, y );
           std::vector< uint8_t > data3 { 1,3,0,0,0,0, (uint8_t)((y & 0xFF00) >> 8), (uint8_t)(y&0xFF) };
           id(can1)->send_data(0x108180FE, 1, data3);       
@@ -320,7 +324,7 @@ canbus:
                 id(output_voltage).publish_state(val);
                 break;
               case 0x0176:
-                id(output_current_max).publish_state(( x[4]<<24 | x[5]<<16 | x[6]<<8 | x[7] )/20.0);
+                id(output_current_max).publish_state(( x[4]<<24 | x[5]<<16 | x[6]<<8 | x[7] )/(($max_current / 100.0) * 10.23));
                 break;
               case 0x0178:
                 id(input_voltage).publish_state(val);
