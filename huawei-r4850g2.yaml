@@ -5,7 +5,7 @@ substitutions:
 # There are two models r4850r1 and r4850r2
 # the r1 has 4000W or 75 Amps max, the r2 has 3000W or 50
 # depending on the model you can configure max current here:
-  max_current: 50
+  max_current: "50"
 
 esphome:
   name: $name
